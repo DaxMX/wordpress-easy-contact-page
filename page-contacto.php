@@ -1,7 +1,7 @@
 <?php
 # Página de contacto de fácil integración en WordPress.
 # (c) DaxMX. Derechos reservados. https://daxmx.net/
-# $id page-contacto.php
+# $id page-contacto.php - Version: 1.0
 # PayPal donate: https://www.paypal.com/donate/?hosted_button_id=X6TBD2PPB7C9S
 # Bitcoin donate: bc1qt4e4ex9zmgj0h7lsqku62wy3gcs6cxawgp0m59
 # Instrucciones de Integración: https://daxmx.net/?p=283
