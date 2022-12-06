@@ -1,9 +1,3 @@
-<div style="text-align:center">
-<a href="https://daxmx.net/">
-<img alt="DaxMX" src="https://daxmx.net/res/img/2022/11/cropped-dax-avatar-180x180.png" width="180" height="180">
-</a>
-</div>
-
 # WordPress Easy Contact Page
 Página de contacto de fácil integración en **WordPress** creada por [DaxMX](https://daxmx.net/).
 
