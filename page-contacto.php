@@ -1,10 +1,10 @@
 <?php
 # Página de contacto de fácil integración en WordPress.
-# (c) DaxMX. Derechos reservados. https://daxmx.net/
 # $id page-contacto.php - Version: 1.0
-# PayPal donate: https://www.paypal.com/donate/?hosted_button_id=X6TBD2PPB7C9S
-# Bitcoin donate: bc1qt4e4ex9zmgj0h7lsqku62wy3gcs6cxawgp0m59
 # Instrucciones de Integración: https://daxmx.net/?p=283
+# Copyright 2020-2022 DaxMX. https://daxmx.net/
+# Este programa es software libre y se distribuye bajo licencia GPL versión 3.0 o posterior.
+# Encontrarás una copia de la licencia en: https://www.gnu.org/licenses/gpl.txt
 
 # Carga Javascript y CSS requerido
 if(!empty($_GET['css'])) {dax_contact_inline_css();}
