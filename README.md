@@ -24,6 +24,9 @@ Para instrucciones de instalación, dudas, sugerencias y ayuda visita:
 Si encuentras errores de diseño o fallos puedes reportarlo aquí en Github abriendo un tema en:
 [https://github.com/DaxMX/wordpress-easy-contact-page/issues](https://github.com/DaxMX/wordpress-easy-contact-page/issues)
 
+### Licencia:
+Este programa es software libre y se distribuye "tal cual" y sin ninguna garantía, bajo licencia GPL versión 3.0 o posterior, encontrarás una copia de la licencia en: [https://www.gnu.org/licenses/gpl.txt](https://www.gnu.org/licenses/gpl.txt)
+
 ### Donaciones:
 Si te pareció útil, considera apoyar el desarrollo de este y proyecto haciendo una donación para invitarme un café.
 - [Donar por PayPal](https://www.paypal.com/donate/?hosted_button_id=X6TBD2PPB7C9S)
