@@ -194,7 +194,7 @@ header('Content-Type: application/javascript; charset=uft-8');
 })();
 <?php die;
 }
-# DaxMX captcha library. (c) IUMX/DaxMX
+# DaxMX captcha library.
 function dax_contact_get_captcha() {
 $fnt = __DIR__ . '/captcha.ttf';
 $img = imagecreatetruecolor(150, 60);
