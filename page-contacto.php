@@ -1,6 +1,6 @@
 <?php
 # Página de contacto de fácil integración en WordPress.
-# $id page-contacto.php - Version: 1.0
+# $id page-contacto.php - Version: 1.1
 # Instrucciones de Integración: https://daxmx.net/?p=283
 # Copyright 2020-2022 DaxMX. https://daxmx.net/
 # Este programa es software libre y se distribuye bajo licencia GPL versión 3.0 o posterior.
@@ -24,10 +24,10 @@ $WPN = get_option('blogname');
 if($_POST && $para) {
 foreach($_POST as $k => $v) {${$k} = dax_contact_fix_gpc($v);}
 # Verificación de seguridad y validación de campos incorrectos o vacíos
-$OKOK = !$is_captcha || (!empty($codigo) && $_SESSION['codigo_captcha'] === md5(strtolower($codigo)));
-$IPOK = preg_replace('#[^a-z0-9\.\-:\[\]/]#', '', (isset($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'].'/' : '') . $_SERVER['REMOTE_ADDR']);
-$UAOK = dax_contact_fix_gpc($_SERVER['HTTP_USER_AGENT']);
-$ref = empty($ref) ? '' : $ref;
+$OKOK = !$is_captcha || (!empty($codigo) && isset($_SESSION['codigo_captcha']) && $_SESSION['codigo_captcha'] === md5(strtolower($codigo)));
+$IPOK = preg_replace('#[^a-z0-9\.\-:\[\]/]#', '', (empty($_SERVER['HTTP_X_FORWARDED_FOR']) ? '' : $_SERVER['HTTP_X_FORWARDED_FOR'].'/') . $_SERVER['REMOTE_ADDR']);
+$UAOK = empty($_SERVER['HTTP_USER_AGENT']) ? '-' : dax_contact_fix_gpc($_SERVER['HTTP_USER_AGENT']);
+$ref = empty($ref) ? (empty($_SERVER['HTTP_REFERER']) ? '' : htmlspecialchars(dax_contact_fix_gpc($_SERVER['HTTP_REFERER']))) : $ref;
 $mail = (!empty($mail) && preg_match('#^[a-z0-9\.\-\_]+@[a-z0-9\.\-\_]+\.[a-z]{2,12}$#i', $mail)) ? $mail : 0;
 $nombre = empty($nombre) ? 0 : preg_replace('#[^a-z0-9\-_ ]#i', '', $nombre);
 if(strlen($nombre) < 3) $nombre = 0;
@@ -94,14 +94,14 @@ get_header();
 <div id="page" class="single">
 	<article id="content" class="article page">
 	<div class="single_post">
-		<header><h1 class="title"><a href="<?php the_permalink($page->ID);?>">Contacto <?php echo $WPN;?></a></h1></header>
+		<header><h1 class="title"><a href="<?php the_permalink();?>">Contacto <?php echo $WPN;?></a></h1></header>
 		<div class="post-content">
 		<?php if($para) { ?>
 			<p>Captura los datos a continuación. Todos los campos son requeridos.</p>
 			<div id="res"></div>
-			<form id="contacto" action="<?php the_permalink($page->ID);?>" method="post">
+			<form id="contacto" action="<?php the_permalink();?>" method="post">
 			<p>
-			<input type="hidden" name="ref" value="<?php echo empty($_SERVER['HTTP_REFERER']) ? '' : htmlspecialchars(dax_contact_fix_gpc($_SERVER['HTTP_REFERER']));?>" id="ref">
+			<input type="hidden" name="ref" value="<?php echo $ref;?>" id="ref">
 			<label for="nombre">Nombre:</label>
 			<input type="text" name="nombre" id="nombre" placeholder="Nombre Completo" value="" tabindex="1" required autofocus>
 			</p>
@@ -152,7 +152,7 @@ header('Content-Type: application/javascript; charset=uft-8');
 //<script>
 (function() {
 	function $(id) {return document.getElementById(id);}
-	function Rimg() {if($('codigo')){var d=(new Date()).getTime(),i=$('get-contact-captcha').src;$('get-contact-captcha').src=i.replace(/\?iumx_captcha=.+/, '?get_captcha='+d);$('codigo').value='';}}
+	function Rimg() {if($('codigo')){var d=(new Date()).getTime(),i=$('get-contact-captcha').src;$('get-contact-captcha').src=i.replace(/\?get_captcha=.+/, '?get_captcha='+d);$('codigo').value='';}}
 	function ajx() {
 	if(window.XMLHttpRequest) return new XMLHttpRequest();
 	try {return ActiveXObject('MSXML2.XMLHTTP.3.0');} catch(e) {return null;}
@@ -342,7 +342,7 @@ for($i =0; $i < 6; $i++) {
 	imagefttext($img, 16, 0, $j, 40, imagecolorallocate($img, 0, 0, 0), $fnt, $cap[$i]);
 	$j=$j+23;
 }
-function wave_area($img, $x, $y, $width, $height, $amplitude = 10, $period = 10){
+function wave_area($img, $x, $y, $width, $height, $amplitude = 10, $period = 10) {
 	$height2 = $height * 2;
 	$width2 = $width * 2;
 	$img2 = imagecreatetruecolor($width2, $height2);
