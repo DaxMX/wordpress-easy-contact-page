@@ -1,8 +1,8 @@
 <?php
 # Página de contacto de fácil integración en WordPress.
-# $id page-contacto.php - Version: 1.1
+# $id page-contacto.php - Version: 1.2
 # Instrucciones de Integración: https://daxmx.net/?p=283
-# Copyright 2020-2022 DaxMX. https://daxmx.net/
+# Copyright DaxMX. https://daxmx.net/
 # Este programa es software libre y se distribuye bajo licencia GPL versión 3.0 o posterior.
 # Encontrarás una copia de la licencia en: https://www.gnu.org/licenses/gpl.txt
 
@@ -349,7 +349,7 @@ function wave_area($img, $x, $y, $width, $height, $amplitude = 10, $period = 10)
 	imagecopyresampled($img2, $img, 0, 0, $x, $y, $width2, $height2, $width, $height);
 	if($period == 0) $period = 1;
 	for($i = 0; $i < ($width2); $i += 2)
-	imagecopy($img2, $img2, $x + $i - 2, $y + sin($i / $period) * $amplitude, $x + $i, $y, 2, $height2);
+	imagecopy($img2, $img2, $x + $i - 2, $y + intval(sin($i / $period)) * $amplitude, $x + $i, $y, 2, $height2);
 	imagecopyresampled($img, $img2, $x, $y, 0, 0, $width, $height, $width2, $height2);
 	imagedestroy($img2);
 }
